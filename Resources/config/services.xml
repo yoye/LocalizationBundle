@@ -5,7 +5,7 @@
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
         
     <services>
-        <service id="bedycasa.core.twig.localization" class="Yoye\Bundle\LocalizationBundle\Twig\Extension\LocalizationExtension">
+        <service id="yoye_localisation" class="Yoye\Bundle\LocalizationBundle\Twig\Extension\LocalizationExtension">
             <argument type="service" id="session" />
             <tag name="twig.extension" />
         </service>            
