@@ -2,7 +2,7 @@
 
 namespace Yoye\Bundle\LocalizationBundle\Twig\Extension;
 
-use DateTime, IntlDateFormatter;
+use DateTime, IntlDateFormatter, NumberFormatter;
 use Symfony\Component\Locale\Locale;
 use Symfony\Component\Locale\Stub\StubLocale;
 use Symfony\Component\HttpFoundation\Session;
@@ -39,6 +39,7 @@ class LocalizationExtension extends \Twig_Extension
         return array(
             'l10n_date' => new \Twig_Filter_Method($this, 'getDateIntl'),
             'l10n_time' => new \Twig_Filter_Method($this, 'getTimeIntl'),
+            'l10n_number_format' => new \Twig_Filter_Method($this, 'getNumberFormat'),
         );
     }
 
@@ -119,6 +120,20 @@ class LocalizationExtension extends \Twig_Extension
         $intl = new IntlDateFormatter($this->session->getLocale(), IntlDateFormatter::NONE, $timeFormat);
 
         return $intl->format($date->getTimestamp());
+    }
+    
+    /**
+     * Number formatter
+     * 
+     * @param mixed $value
+     * @param integer $type
+     * @return string
+     */
+    public function getNumberFormat($value, $type = NumberFormatter::DECIMAL)
+    {
+        $formatter = new NumberFormatter($this->session->getLocale(), $type);
+        
+        return $formatter->format($value);
     }
 
 }
