@@ -4,11 +4,21 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
         
+    <parameters>
+        <parameter key="yoye_localization.localizer.class">Yoye\Bundle\LocalizationBundle\Localization\Localizer</parameter>
+    </parameters>
+        
     <services>
-        <service id="yoye_localisation" class="Yoye\Bundle\LocalizationBundle\Twig\Extension\LocalizationExtension">
-            <argument type="service" id="session" />
+        
+        <service id="yoye_localisation.twig_extension" class="Yoye\Bundle\LocalizationBundle\Twig\Extension\LocalizationExtension" public="false">
+            <argument type="service" id="yoye_localisation.localizer" />
             <tag name="twig.extension" />
-        </service>            
+        </service>    
+        
+        <service id="yoye_localisation.localizer" class="%yoye_localization.localizer.class%">
+            <argument type="service" id="session" />
+        </service>
+        
     </services>
     
 </container>
