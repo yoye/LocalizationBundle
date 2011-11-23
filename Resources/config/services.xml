@@ -10,12 +10,12 @@
         
     <services>
         
-        <service id="yoye_localisation.twig_extension" class="Yoye\Bundle\LocalizationBundle\Twig\Extension\LocalizationExtension" public="false">
-            <argument type="service" id="yoye_localisation.localizer" />
+        <service id="yoye_localization.twig_extension" class="Yoye\Bundle\LocalizationBundle\Twig\Extension\LocalizationExtension" public="false">
+            <argument type="service" id="yoye_localization.localizer" />
             <tag name="twig.extension" />
         </service>    
         
-        <service id="yoye_localisation.localizer" class="%yoye_localization.localizer.class%">
+        <service id="yoye_localization.localizer" class="%yoye_localization.localizer.class%">
             <argument type="service" id="session" />
         </service>
         
