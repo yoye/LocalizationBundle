@@ -3,7 +3,8 @@
 namespace Yoye\Bundle\LocalizationBundle\Localization;
 
 use DateTime,
-    IntlDateFormatter;
+    IntlDateFormatter,
+    NumberFormatter;
 use Symfony\Component\Locale\Locale;
 use Symfony\Component\Locale\Stub\StubLocale;
 use Symfony\Component\HttpFoundation\Session;
