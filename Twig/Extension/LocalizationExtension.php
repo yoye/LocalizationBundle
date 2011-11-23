@@ -31,6 +31,7 @@ class LocalizationExtension extends \Twig_Extension
         return array(
             'l10n_date' => new \Twig_Filter_Method($this, 'getDateIntl'),
             'l10n_time' => new \Twig_Filter_Method($this, 'getTimeIntl'),
+            'l10n_number_format' => new \Twig_Filter_Method($this, 'getNumberFormat'),
         );
     }
 

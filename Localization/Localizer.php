@@ -104,5 +104,19 @@ class Localizer
 
         return $intl->format($date->getTimestamp());
     }
+    
+    /**
+     * Number formatter
+     * 
+     * @param mixed $value
+     * @param integer $type
+     * @return string
+     */
+    public function getNumberFormat($value, $type = NumberFormatter::DECIMAL)
+    {
+        $formatter = new NumberFormatter($this->session->getLocale(), $type);
+        
+        return $formatter->format($value);
+    }
 
 }
