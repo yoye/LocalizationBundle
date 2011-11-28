@@ -119,5 +119,20 @@ class Localizer
         
         return $formatter->format($value);
     }
+    
+    /**
+     * Get datetime formatter
+     * 
+     * @param DateTime $date
+     * @param integer $dateFormat
+     * @param integer $timeFormat
+     * @return string
+     */
+    public function getDateTimeIntl(DateTime $date, $dateFormat = IntlDateFormatter::MEDIUM, $timeFormat = IntlDateFormatter::SHORT)
+    {
+        $intl = new IntlDateFormatter($this->session->getLocale(), $dateFormat, $timeFormat);
+
+        return $intl->format($date->getTimestamp());
+    }
 
 }
