@@ -12,6 +12,7 @@
         }
     ],
     "autoload": {
-        "psr-0": { "Yoye": "" }
-    }
+        "psr-0": { "Yoye\\Bundle\\Localization": "" }
+    },
+    "target-dir": "Yoye/Bundle/LocalizationBundle"
 }
