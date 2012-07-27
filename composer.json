@@ -1,0 +1,14 @@
+{
+    "name": "yoye/localizationbundle",
+    "type": "symfony-bundle",
+    "description": "Add method to localize your Symfony2 project.",
+    "keywords": ["symfony2", "localization", "l10n", "twig"],
+    "authors": [
+        { 
+            "name": "Yoann Aparici", 
+            "email": "yoann@aparici.fr", 
+            "homepage": "http://yoann.aparici.fr", 
+            "role": "Developer" 
+        }
+    ]
+}
