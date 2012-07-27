@@ -7,7 +7,7 @@ use DateTime,
     NumberFormatter;
 use Symfony\Component\Locale\Locale;
 use Symfony\Component\Locale\Stub\StubLocale;
-use Symfony\Component\HttpFoundation\Session;
+use Symfony\Component\HttpFoundation\Session\Session;
 
 class Localizer
 {
