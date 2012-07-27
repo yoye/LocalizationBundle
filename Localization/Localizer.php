@@ -7,15 +7,15 @@ use DateTime,
     NumberFormatter;
 use Symfony\Component\Locale\Locale;
 use Symfony\Component\Locale\Stub\StubLocale;
-use Symfony\Component\HttpFoundation\Session\Session;
+use Symfony\Component\HttpFoundation\Request;
 
 class Localizer
 {
 
     /**
-     * @var Session
+     * @var Request
      */
-    private $session;
+    private $request;
 
     /**
      * @var array
@@ -25,11 +25,11 @@ class Localizer
     /**
      * __construct
      * 
-     * @param Session $session 
+     * @param Request $request 
      */
-    public function __construct(Session $session)
+    public function __construct(Request $request)
     {
-        $this->session = $session;
+        $this->request = $request;
     }
 
     /**
@@ -41,7 +41,7 @@ class Localizer
     public function getDisplayCountry($code)
     {
         $code = strtoupper($code);
-        $countries = Locale::getDisplayCountries($this->session->getLocale());
+        $countries = Locale::getDisplayCountries($this->request->getLocale());
 
         if (isset($countries[$code])) {
             return $countries[$code];
@@ -56,7 +56,7 @@ class Localizer
      */
     public function getDisplayLanguage($code)
     {
-        $languages = Locale::getDisplayLanguages($this->session->getLocale());
+        $languages = Locale::getDisplayLanguages($this->request->getLocale());
 
         if (isset($languages[$code])) {
             return $languages[$code];
@@ -88,7 +88,7 @@ class Localizer
      */
     public function getDateIntl(DateTime $date, $dateFormat = IntlDateFormatter::MEDIUM)
     {
-        $intl = new IntlDateFormatter($this->session->getLocale(), $dateFormat, IntlDateFormatter::NONE);
+        $intl = new IntlDateFormatter($this->request->getLocale(), $dateFormat, IntlDateFormatter::NONE);
 
         return $intl->format($date->getTimestamp());
     }
@@ -101,7 +101,7 @@ class Localizer
      */
     public function getTimeIntl(DateTime $date, $timeFormat = IntlDateFormatter::MEDIUM)
     {
-        $intl = new IntlDateFormatter($this->session->getLocale(), IntlDateFormatter::NONE, $timeFormat);
+        $intl = new IntlDateFormatter($this->request->getLocale(), IntlDateFormatter::NONE, $timeFormat);
 
         return $intl->format($date->getTimestamp());
     }
@@ -115,7 +115,7 @@ class Localizer
      */
     public function getNumberFormat($value, $type = NumberFormatter::DECIMAL)
     {
-        $formatter = new NumberFormatter($this->session->getLocale(), $type);
+        $formatter = new NumberFormatter($this->request->getLocale(), $type);
         
         return $formatter->format($value);
     }
@@ -130,7 +130,7 @@ class Localizer
      */
     public function getDateTimeIntl(DateTime $date, $dateFormat = IntlDateFormatter::MEDIUM, $timeFormat = IntlDateFormatter::SHORT)
     {
-        $intl = new IntlDateFormatter($this->session->getLocale(), $dateFormat, $timeFormat);
+        $intl = new IntlDateFormatter($this->request->getLocale(), $dateFormat, $timeFormat);
 
         return $intl->format($date->getTimestamp());
     }

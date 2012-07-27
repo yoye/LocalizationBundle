@@ -2,6 +2,8 @@
 
 namespace Yoye\Bundle\LocalizationBundle\Twig\Extension;
 
+use Symfony\Component\DependencyInjection\ContainerInterface;
+
 use Yoye\Bundle\LocalizationBundle\Localization\Localizer;
 
 class LocalizationExtension extends \Twig_Extension
@@ -12,9 +14,9 @@ class LocalizationExtension extends \Twig_Extension
      */
     private $localizer;
 
-    public function __construct(Localizer $localizer)
+    public function __construct(ContainerInterface $container)
     {
-        $this->localizer = $localizer;
+        $this->localizer = $container->get('yoye_localization.localizer');
     }
 
     public function getFunctions()
