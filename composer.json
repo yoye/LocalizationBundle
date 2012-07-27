@@ -10,5 +10,8 @@
             "homepage": "http://yoann.aparici.fr", 
             "role": "Developer" 
         }
-    ]
+    ],
+    "autoload": {
+        "psr-0": { "Yoye": "" }
+    }
 }
