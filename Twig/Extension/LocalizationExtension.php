@@ -16,7 +16,9 @@ class LocalizationExtension extends \Twig_Extension
 
     public function __construct(ContainerInterface $container)
     {
-        $this->localizer = $container->get('yoye_localization.localizer');
+        if ($container->isScopeActive('request')) {
+            $this->localizer = $container->get('yoye_localization.localizer');
+        }
     }
 
     public function getFunctions()
