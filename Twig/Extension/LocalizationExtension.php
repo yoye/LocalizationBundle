@@ -45,7 +45,7 @@ class LocalizationExtension extends \Twig_Extension
     {
         return 'localization_extension';
     }
-    
+
     public function __call($method, $arguments)
     {
         if (is_callable(array($this->localizer, $method))) {
@@ -54,5 +54,5 @@ class LocalizationExtension extends \Twig_Extension
 
         throw new \InvalidArgumentException(sprintf('"%s" does not exist on "%s"!', $method, get_class($this->localizer)));
     }
-    
+
 }

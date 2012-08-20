@@ -24,8 +24,8 @@ class Localizer
 
     /**
      * __construct
-     * 
-     * @param Request $request 
+     *
+     * @param Request $request
      */
     public function __construct(Request $request)
     {
@@ -35,7 +35,7 @@ class Localizer
     /**
      * Localize country name
      *
-     * @param string $code 
+     * @param  string $code
      * @return string
      */
     public function getDisplayCountry($code)
@@ -50,8 +50,8 @@ class Localizer
 
     /**
      * Get language name
-     * 
-     * @param string $code 
+     *
+     * @param  string $code
      * @return string
      */
     public function getDisplayLanguage($code)
@@ -65,8 +65,8 @@ class Localizer
 
     /**
      * Get currency symbol
-     * 
-     * @param string $code
+     *
+     * @param  string $code
      * @return string
      */
     public function getCurrencySymbol($code)
@@ -74,16 +74,16 @@ class Localizer
         if (empty($this->currencies)) {
             $this->currencies = StubLocale::getCurrenciesData('en');
         }
-        
+
         if (isset($this->currencies[$code]['symbol'])) {
             return $this->currencies[$code]['symbol'];
         }
     }
 
     /**
-     * Format date 
-     * 
-     * @param DateTime $date 
+     * Format date
+     *
+     * @param  DateTime $date
      * @return string
      */
     public function getDateIntl(DateTime $date, $dateFormat = IntlDateFormatter::MEDIUM)
@@ -95,8 +95,8 @@ class Localizer
 
     /**
      * Format time
-     * 
-     * @param DateTime $date 
+     *
+     * @param  DateTime $date
      * @return string
      */
     public function getTimeIntl(DateTime $date, $timeFormat = IntlDateFormatter::MEDIUM)
@@ -105,40 +105,40 @@ class Localizer
 
         return $intl->format($date->getTimestamp());
     }
-    
+
     /**
      * Number formatter
-     * 
-     * @param mixed $value
-     * @param integer $type
+     *
+     * @param  mixed   $value
+     * @param  integer $type
      * @return string
      */
     public function getNumberFormat($value, $type = NumberFormatter::DECIMAL)
     {
         $formatter = new NumberFormatter($this->request->getLocale(), $type);
-        
+
         return $formatter->format($value);
     }
-    
+
     /**
      *
-     * @param mixed $value
-     * @param string $currency
+     * @param  mixed  $value
+     * @param  string $currency
      * @return string
      */
     public function getNumberCurrencyFormat($value, $currency)
     {
         $formatter = new NumberFormatter($this->request->getLocale(), NumberFormatter::CURRENCY);
-        
+
         return $formatter->formatCurrency($value, $currency);
     }
-    
+
     /**
      * Get datetime formatter
-     * 
-     * @param DateTime $date
-     * @param integer $dateFormat
-     * @param integer $timeFormat
+     *
+     * @param  DateTime $date
+     * @param  integer  $dateFormat
+     * @param  integer  $timeFormat
      * @return string
      */
     public function getDateTimeIntl(DateTime $date, $dateFormat = IntlDateFormatter::MEDIUM, $timeFormat = IntlDateFormatter::SHORT)
