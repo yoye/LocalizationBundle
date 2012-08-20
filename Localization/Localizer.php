@@ -121,6 +121,19 @@ class Localizer
     }
     
     /**
+     *
+     * @param mixed $value
+     * @param string $currency
+     * @return string
+     */
+    public function getNumberCurrencyFormat($value, $currency)
+    {
+        $formatter = new NumberFormatter($this->request->getLocale(), NumberFormatter::CURRENCY);
+        
+        return $formatter->formatCurrency($value, $currency);
+    }
+    
+    /**
      * Get datetime formatter
      * 
      * @param DateTime $date

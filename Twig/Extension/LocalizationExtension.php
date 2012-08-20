@@ -37,6 +37,7 @@ class LocalizationExtension extends \Twig_Extension
             'l10n_time' => new \Twig_Filter_Method($this, 'getTimeIntl'),
             'l10n_datetime' => new \Twig_Filter_Method($this, 'getDateTimeIntl'),
             'l10n_number_format' => new \Twig_Filter_Method($this, 'getNumberFormat'),
+            'l10n_number_currency' => new \Twig_Filter_Method($this, 'getNumberCurrencyFormat'),
         );
     }
 
@@ -50,6 +51,8 @@ class LocalizationExtension extends \Twig_Extension
         if (is_callable(array($this->localizer, $method))) {
             return call_user_func_array(array($this->localizer, $method), $arguments);
         }
+
+        throw new \InvalidArgumentException(sprintf('"%s" does not exist on "%s"!', $method, get_class($this->localizer)));
     }
     
 }
