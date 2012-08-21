@@ -86,9 +86,13 @@ class Localizer
      * @param  DateTime $date
      * @return string
      */
-    public function getDateIntl(DateTime $date, $dateFormat = IntlDateFormatter::MEDIUM)
+    public function getDateIntl(DateTime $date, $pattern = null, $dateFormat = IntlDateFormatter::MEDIUM)
     {
         $intl = new IntlDateFormatter($this->request->getLocale(), $dateFormat, IntlDateFormatter::NONE);
+        
+        if (null !== $pattern) {
+            $intl->setPattern($pattern);
+        }
 
         return $intl->format($date->getTimestamp());
     }
