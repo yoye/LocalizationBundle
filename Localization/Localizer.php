@@ -119,6 +119,10 @@ class Localizer
      */
     public function getNumberFormat($value, $type = NumberFormatter::DECIMAL)
     {
+        if ($value === null) {
+            return null;
+        }
+        
         $formatter = new NumberFormatter($this->request->getLocale(), $type);
 
         return $formatter->format($value);
